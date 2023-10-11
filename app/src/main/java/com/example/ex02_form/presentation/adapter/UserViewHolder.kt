@@ -7,10 +7,9 @@ import com.example.ex02_form.domain.User
 
 class UserViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    private var binding: ViewItemUserBinding? = null
+     val binding = ViewItemUserBinding.bind(view)
 
     fun render(user: User) {
-        binding = ViewItemUserBinding.bind(view)
         binding?.apply {
             itemName.text = user.name
             itemSurname.text = user.surname

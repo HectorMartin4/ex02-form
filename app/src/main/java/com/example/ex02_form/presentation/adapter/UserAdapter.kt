@@ -7,22 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ex02_form.R
 import com.example.ex02_form.domain.User
 
-class UserAdapter : RecyclerView.Adapter<UserViewHolder>() {
-
-    private val dataItems: MutableList<User> = mutableListOf()
-    private val items = mutableListOf<User>()
+class UserAdapter(private val dataItems: List<User> ) : RecyclerView.Adapter<UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.view_item_user, parent, false)
 
         return UserViewHolder(view)
-    }
-
-    fun setDataItems(user: List<User>){
-        items.clear()
-        items.addAll(user)
-        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = dataItems.size

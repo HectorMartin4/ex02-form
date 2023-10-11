@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ex02_form.R
 import com.example.ex02_form.data.UserDataRepository
@@ -20,8 +21,8 @@ import com.example.ex02_form.presentation.adapter.UserAdapter
 
 class MainActivity : AppCompatActivity() {
 
-    private var binding: ActivityMainBinding? = null
-    private var userAdapter = UserAdapter()
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: UserAdapter
 
     val viewModels: UserViewModel by lazy {
         UserViewModel(
@@ -32,13 +33,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        clean()
         setupObservers()
         viewModels.loadUser()
-        setupView()
         saveUser()
+        clean()
     }
 
     fun clean() {
@@ -50,21 +51,13 @@ class MainActivity : AppCompatActivity() {
 
     fun setupObservers() {
 
-        val observer = Observer<UserViewModel.UserUiState> {}
-        viewModels.uiState.observe(this, observer)
-    }
-
-    fun setupView() {
-        binding?.apply {
-            listUsers.apply {
-                adapter = userAdapter
-                layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-            }
+        val observer = Observer<UserViewModel.UserUiState> {
+            adapter = UserAdapter(dataItems = it.user)
+            binding.listUsers.adapter = adapter
         }
+        viewModels.uiState.observe(this, observer)
+
+
     }
 
     fun saveUser() {

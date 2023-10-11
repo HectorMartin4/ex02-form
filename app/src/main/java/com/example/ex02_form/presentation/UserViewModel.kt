@@ -53,6 +53,6 @@ class UserViewModel(
     data class UserUiState(
         val errorApp: ErrorApp? = null,
         val isLoading: Boolean = false,
-        val user: List<User>? = emptyList()
+        val user: List<User> = emptyList()
     )
 }
