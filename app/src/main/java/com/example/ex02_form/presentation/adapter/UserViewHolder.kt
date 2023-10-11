@@ -9,10 +9,11 @@ class UserViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
      val binding = ViewItemUserBinding.bind(view)
 
-    fun render(user: User) {
+    fun render(user: User, onClickDelete: (Int) -> Unit) {
         binding?.apply {
             itemName.text = user.name
             itemSurname.text = user.surname
+            buttonErase.setOnClickListener { onClickDelete(adapterPosition) }
         }
     }
 }

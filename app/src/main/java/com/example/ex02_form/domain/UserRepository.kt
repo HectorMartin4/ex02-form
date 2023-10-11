@@ -7,6 +7,7 @@ interface UserRepository {
 
     fun save(user: User): Either<ErrorApp, User>
     fun getAll(): Either<ErrorApp, List<User>>
-//    fun delete(id: Int): Either<ErrorApp, Boolean>
+
+    fun delete(id: Int): Either<ErrorApp, Boolean>
 
 }

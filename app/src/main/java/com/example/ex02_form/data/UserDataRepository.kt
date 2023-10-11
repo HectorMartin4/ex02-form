@@ -16,7 +16,7 @@ class UserDataRepository(private val localDataSource: UserXmlLocalDataSource) : 
         return localDataSource.getAll()
     }
 
-    /*override fun delete(id: Int): Either<ErrorApp, Boolean> {
+    override fun delete(id: Int): Either<ErrorApp, Boolean> {
         return localDataSource.delete(id)
-    }*/
+    }
 }

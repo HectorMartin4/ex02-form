@@ -6,4 +6,5 @@
     <string name="action_get">Recuperar</string>
     <string name="action_clean">Limpiar</string>
     <string name="action_erase">Borrar</string>
+    <string name="action_load">Mostrar</string>
 </resources>
